@@ -7,6 +7,9 @@ public class AppAvanzado {
     public static void main(String[] args) {
         JsonObject jsonObject = JsonParser.parseString(jsonText).getAsJsonObject();
 
+        String ventaId = jsonObject.getAsJsonPrimitive("id").getAsString();
+        System.out.println("Venta ID: "+ventaId);
+
         jsonObject.addProperty("costoEnvio", 5_000);
 
         jsonObject.getAsJsonObject("direccion").addProperty("codigoPostal", "9110111");
