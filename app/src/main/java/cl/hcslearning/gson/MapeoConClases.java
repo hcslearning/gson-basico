@@ -2,28 +2,42 @@ package cl.hcslearning.gson;
 
 import com.google.gson.Gson;
 
-public class App {
+/**
+ * Ejemplo de uso de Gson con clases Java (mapeo).
+ * Serializa un objeto Producto a JSON y luego lo deserializa de nuevo a un objeto.
+ */
+public class MapeoConClases {
     public static void main(String[] args) {
-        String json = null;
-        Producto producto = null;
-
         Gson gson = new Gson();
-        producto = new Producto("Lápiz", 2_000, 20);
-        json = gson.toJson(producto);
-        System.out.println(json);
 
-        // #####################################################################
-        json = """
+        // Crear un objeto Producto y convertirlo a JSON
+        Producto producto = new Producto("Lápiz", 2000, 20);
+        String jsonString = gson.toJson(producto);
+        System.out.println("Objeto Producto serializado a JSON:");
+        System.out.println(jsonString);
+
+        imprimirSeparador();
+
+        // Cadena JSON que será convertida a objeto Producto
+        jsonString = """
                 {
-                  "nombre":"Fundas de Asientos",
-                  "precio":69000,
-                  "stock":5
+                  "nombre": "Fundas de Asientos",
+                  "precio": 69000,
+                  "stock": 5
                 }
                 """;
-        producto = gson.fromJson(json, Producto.class);
+
+        // Convertir JSON a objeto Producto
+        producto = gson.fromJson(jsonString, Producto.class);
+        System.out.println("JSON deserializado a objeto Producto:");
         System.out.println(producto);
     }
+
+    private static void imprimirSeparador() {
+        System.out.println("-".repeat(50));
+    }
 }
+
 
 class Producto {
     private String nombre;
